@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  await page.getByRole('textbox', { name: 'Username' }).click();
+  await page.getByRole('textbox', { name: 'Username' }).fill('Admin');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('link', { name: 'Admin' }).click();
+  await page.getByRole('listitem').filter({ hasText: 'User Management' }).click();
+  await page.getByRole('listitem').filter({ hasText: /^Users$/ }).click();
+  await page.getByRole('button', { name: ' Add' }).click();
+  await page.locator('form i').first().click();
+  await page.getByRole('option', { name: 'ESS' }).click();
+  await page.getByRole('textbox', { name: 'Type for hints...' }).click();
+  await page.getByRole('textbox', { name: 'Type for hints...' }).fill('Linda Anderson');
+  await page.locator('form i').nth(1).click();
+  await page.getByRole('option', { name: 'Enabled' }).click();
+  await page.getByRole('textbox').nth(2).click();
+  await page.getByRole('textbox').nth(2).fill('test.user01');
+  await page.getByRole('textbox').nth(3).click();
+  await page.getByRole('textbox').nth(3).fill('Test');
+  await page.getByRole('textbox').nth(3).press('Alt+ControlOrMeta+@');
+  await page.getByRole('textbox').nth(3).fill('Test1234');
+  await page.getByRole('textbox').nth(4).click();
+  await page.getByRole('textbox').nth(4).fill('Test');
+  await page.getByRole('textbox').nth(4).press('Alt+ControlOrMeta+@');
+  await page.getByRole('textbox').nth(4).fill('Test1234');
+  await page.getByRole('textbox', { name: 'Type for hints...' }).click();
+  await page.getByRole('textbox', { name: 'Type for hints...' }).fill('Linda');
+  await page.getByRole('textbox', { name: 'Type for hints...' }).press('Enter');
+  await page.getByRole('textbox', { name: 'Type for hints...' }).click();
+  await page.getByRole('textbox', { name: 'Type for hints...' }).fill('l');
+  await page.getByRole('option', { name: 'Amelia Brown' }).click();
+  await page.getByRole('button', { name: 'Save' }).click();
+});
